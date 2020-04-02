@@ -1,6 +1,6 @@
 exports.up = function(knex) {
   return knex.schema.createTable('ongs', t => {
-    t.increments('id').primary();
+    t.string('id').primary();
     t.string('name').notNullable();
     t.string('interests').notNullable(); //ex |a b c d e f| está contido nessa tabela
     t.string('street').notNullable();
@@ -9,8 +9,6 @@ exports.up = function(knex) {
     t.string('city').notNullable();
     t.string('UF', 2).notNullable();
     t.string('whatsapp').notNullable();
-    t.string('email').notNullable();
-    t.string('instagram').notNullable();
   });
 };
 
