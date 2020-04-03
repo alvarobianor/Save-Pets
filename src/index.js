@@ -11,11 +11,11 @@ class App {
     this.server.listen(3333);
   }
 
-  routes() {
-    this.server.use(routes);
-  }
   middlewares() {
     this.server.use(express.json());
+  }
+  routes() {
+    this.server.use(routes);
   }
 }
 
