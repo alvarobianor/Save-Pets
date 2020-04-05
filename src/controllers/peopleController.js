@@ -42,6 +42,16 @@ class Controller {
   };
 
   indexOf = async (req, res) => {
+    const auth = req.headers.authorization;
+
+    const verify = await connection('pessoas').where('id', auth).select('id');
+
+    if (verify.length == 0 || !auth) {
+      return res.status(401).json({
+        error: "try again, you aren't logged or you are Unauthorized",
+      });
+    }
+
     const { interests } = req.params;
     const { city } = req.query;
 

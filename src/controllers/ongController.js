@@ -43,6 +43,20 @@ module.exports = {
   },
 
   async index(req, res) {
+    const auth = req.headers.authorization;
+
+    const verify = await connection('pessoas').where('id', auth).select('id');
+
+    console.log(verify);
+
+    if (verify.length == 0 || !auth) {
+      return res
+        .status(401)
+        .json({
+          error: "try again, you aren't logged or you are Unauthorized",
+        });
+    }
+
     const { page = 1 } = req.query;
 
     const listOngs = await connection('ongs')
